@@ -1,22 +1,44 @@
-// const  Observable = require( "rxjs" ); 
-const myPromise = new Promise( resolve => {
-    setTimeout(() => {
-        resolve("shrut");
-    }, 100);
-});
-
-myPromise.then((data) => console.log("Promise : ",data));
+// // Doubt:
+// // Reactive Programming  ->  https://goodguydaniel.com/blog/reactive-programming-fundamentals#core-properties-of-observables => 
+// // is this similar to webhooks
+// import { Observable } from 'rxjs';
 
 // const observable = new Observable((subscriber) => {
 //   subscriber.next(1);
 //   subscriber.next(2);
-//   subscriber.next(3);
 //   setTimeout(() => {
-//     subscriber.next(4);
-//     subscriber.complete();
+//     subscriber.next(3);
+//     subscriber.complete() 
 //   }, 1000);
-// });
-
-// myObservable.subscribe(result => {
-//     console.log('Observable :', result);
+//   setTimeout(() => {
+//     subscriber.next(6);
+//   },2000)
 // })
+
+// console.log('just before subscribe');
+// observable.subscribe({
+//   next(x) {
+//     console.log("got the value : " + x);
+//   },
+//   error : (err) => console.log(err),
+//   complete : () => console.log("done")
+// });
+// console.log("after subscription")
+
+import { Observable } from 'rxjs';
+
+const foo = new Observable((subscriber) => {
+  console.log('Hello');
+  subscriber.next(42);
+});
+
+foo.subscribe((x) => {
+  console.log(x);
+});
+foo.subscribe((y) => {
+  console.log(y);
+});
+
+console.log('before');
+console.log(foo.call());
+console.log('after');

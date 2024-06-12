@@ -10,5 +10,6 @@
   "description": "",
   "dependencies": {
     "rxjs": "^7.8.1"
-  }
+  },
+  "type": "module"
 }
