@@ -449,7 +449,70 @@ console.log(personAccount.accountBalance());
 console.log(personAccount.addIncome("extra", 5000));
 console.log(personAccount.addExpense("extra", 5000));
 
-// TODO 42 - 45 Doubt
+// 42 Count logged in users,count users having greater than equal to 50 points from the following object.
+const users2 = [
+    {
+        name:'Brook', 
+        scores:75,
+        skills:['HTM', 'CSS', 'JS'],
+        age:16
+    },
+    {
+        name:'Alex', 
+        scores:80,
+        skills:['HTM', 'CSS', 'JS'],
+        age:18
+    }, 
+    {
+        name:'David', 
+        scores:75,
+        skills:['HTM', 'CSS'],
+        age:22
+    }, 
+    {
+        name:'John', 
+        scores:85,
+        skills:['HTM'],
+        age:25
+    },
+    {
+        name:'Sara',
+        scores:95,
+        skills:['HTM', 'CSS', 'JS'],
+        age: 26
+    },
+    {
+        name:'Martha', 
+        scores:80,
+        skills:['HTM', 'CSS', 'JS'],
+        age:18
+    },
+    {
+        name:'Thomas',
+        scores:90,
+        skills:['HTM', 'CSS', 'JS'],
+        age:20
+    }
+    ];
+console.log("logged in users : ", users2.length);
+console.log(users2.filter((value) => value.scores >= 50).length);
+
+// 43 Set your name in the users object without modifying the original users object
+const newUsersArr = [...users2];
+console.log("before users : ", users2);
+newUsersArr.push({name: "shrut",
+    score :100,
+    skills:["NODE"],
+    age : 21
+})
+console.log("after users : ", users2);
+console.log("After newUsers :", newUsersArr);
+
+// 44 Get all keys or properties of users object
+console.log(Object.keys(users2[0]));
+
+// 45 Get all the values of users object
+console.log(Object.values(users2[0]));
 
 
 // 46 Change skills array to JSON using JSON.stringify(). 
