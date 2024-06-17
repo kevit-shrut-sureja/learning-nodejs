@@ -331,7 +331,7 @@ class que35{
         });
         return isUserAdded
     }
-    print(){
+    printUserDetails(){
         console.log(this.users)
     }
 }
@@ -352,7 +352,7 @@ console.log(obj.addUser({
 
 console.log(obj.addUserSkill('Shrut', "NextJS"));
 console.log(obj.addUserSkill('Jay', "NextJS"));
-obj.print();
+obj.printUserDetails();
 console.log(obj.editUser({
     name:'Shrut',
     scores:1000,
@@ -366,7 +366,9 @@ console.log(obj.editUser({
     skills:['JS'],
     age:21
 }))
-obj.print()
+obj.printUserDetails()
+
+
 // 36 Create an empty object called dog
 
 const dog = {};
@@ -399,25 +401,32 @@ dog.getDogInfo = function(){
 const personAccount = {
     firstName : "shrut", 
     lastName: "sureja", 
-    incomes : { salary : 10000, stockMarket : 1000, tution : 500}, 
-    expenses : {travel : 600, food : 5000},
+    incomes : { 
+        salary : 10000,
+        stockMarket : 1000,
+        tution : 500
+    }, 
+    expenses : { 
+        travel : 600, 
+        food : 5000 
+    },
     totalIncome(){
-        const total = 0;
-        for (const [keys, values] of this.incomes){
+        let total = 0;
+        for (const [keys, values] of Object.entries(this.incomes)){
             total+=values;
         }
         return total;
     },
     totalExpense(){
-        const total = 0;
-        for (const [keys, values] of this.expenses){
+        let total = 0;
+        for (const [keys, values] of Object.entries(this.expenses)){
             total+=values;
         }
         return total;
     },
     accountInfo(){
         return {
-            firstName :this.firstName,
+            firstName : this.firstName,
             lastName : this.lastName
         }
     },
@@ -440,3 +449,31 @@ console.log(personAccount.accountBalance());
 console.log(personAccount.addIncome("extra", 5000));
 console.log(personAccount.addExpense("extra", 5000));
 
+// TODO 42 - 45 Doubt
+
+
+// 46 Change skills array to JSON using JSON.stringify(). 
+const skills = ['HTML', 'CSS', 'JS', 'React','Node', 'Python']
+console.log(JSON.stringify({skills}))
+
+// 47 Stringify the age variable. 
+let age = 250; 
+console.log(JSON.stringify({age}));
+
+// 48 Stringify the isMarried variable. 
+let isMarried = true;
+console.log(JSON.stringify({isMarried}));
+
+// 49 Stringify the student object.
+const student = {
+    firstName:'Asabeneh',
+    lastName:'Yetayehe',
+    age:250,
+    isMarried:true,
+    skills:['HTML', 'CSS', 'JS', 'React','Node', 'Python', ]
+}
+
+console.log(JSON.stringify(student));
+
+// 50 Stringify the above students object with only firstName, lastName and skills properties.
+console.log(JSON.stringify({firstName : student.firstName, lastName : student.lastName, skills : student.skills}));
