@@ -1,6 +1,5 @@
-const { addNote, removeNote, editNote } = require('./notes.js')
+const { addNote, removeNote, editNote, getNote, getAllNotes } = require('./notes.js')
 const yargs = require("yargs");
-
 yargs.version("1.0.0");
 
 yargs.command({
@@ -18,13 +17,8 @@ yargs.command({
             type : 'string'
         }
     },
-    handler : function(argv){
-        const result = addNote(argv.title, argv.body)
-        if(!result) {
-            console.log(("Note already exists or some error occured"));
-            return;
-        }
-        console.log(("Note has been added"));
+    handler(argv){
+        addNote(argv.title, argv.body)
     }
 })
 
@@ -38,13 +32,8 @@ yargs.command({
             type: 'string'
         }
     },
-    handler : function(argv){
-        const result = removeNote(argv.title)
-        if(!result) {
-            console.log(("Note NOT Found or some error occured"));
-            return;
-        }
-        console.log(("Note has been removed."));
+    handler(argv){
+        removeNote(argv.title)
     }
 })
 
@@ -68,14 +57,34 @@ yargs.command({
             type : 'string'
         }
     },
-    handler : function(argv){
-        const result = editNote(argv.existingTitle, argv.title, argv.body)
-        if(!result) {
-            console.log(("Note title already exists or Note NOT Found or some error occured"));
-            return;
-        }
-        console.log(("Note has been edited"));
+    handler(argv){
+        editNote(argv.existingTitle, argv.title, argv.body)
     }
 })
+
+yargs.command({
+    command : "getNote",
+    describe :"get a single note",
+    builder : {
+        title : {
+            describe : "Note title",
+            demandOption : true,
+            type : 'string'
+        }
+    },
+    handler(argv){
+        getNote(argv.title);
+    }
+})
+
+yargs.command({
+    command : "getAllNotes",
+    describe :"get all notes",
+    handler(){
+        getAllNotes();
+        
+    }
+})
+
 
 yargs.parse();

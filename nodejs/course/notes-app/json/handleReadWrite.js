@@ -1,10 +1,13 @@
 const fs = require('fs')
 const path = './json/notes.json'
 function readJSON(){
-    const dataBuffer = fs.readFileSync(path);
-    const dataJSONString = dataBuffer.toString();
-    const dataJSON = JSON.parse(dataJSONString);
-    return dataJSON;
+    try {
+        const dataBuffer = fs.readFileSync(path);
+        const dataJSONString = dataBuffer.toString();
+        return  JSON.parse(dataJSONString);
+    } catch (error) {
+        return [] // if file does note exist
+    }
 }
 
 function writeJSON(data){
