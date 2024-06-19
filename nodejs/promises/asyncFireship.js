@@ -16,7 +16,7 @@ const getFruit = async name => {
         strawberry: '🍓'
     };
     if(name === "peach")await delay(1000)
-    await delay(1000)
+    else await delay(1000)
     return fruits[name];
 };
   
@@ -28,9 +28,9 @@ const makeSmoothie = async () => {
     const a =  getFruit('pineapple');
     const b = await getFruit('strawberry');
 
-    return Promise.race([a, b]);
+    return Promise.any([a, b]);
 };
-  
+
 const makeSmoothie2 = () => {
     let a;
     return getFruit('pineapple')
@@ -41,34 +41,34 @@ const makeSmoothie2 = () => {
         .then(v => [a, v]);
 };
 
-// makeSmoothie().then((data) => log(data))
+makeSmoothie().then((data) => log(data))
 
-const fruits = ['peach', 'pineapple', 'strawberry'];
+// const fruits = ['peach', 'pineapple', 'strawberry'];
 
-const fruitLoop = async () => {
-//   for(const f of fruits) {
-//     const emoji = await getFruit(f);
+// const fruitLoop = async () => {
+// //   for(const f of fruits) {
+// //     const emoji = await getFruit(f);
+// //     log(emoji);
+// //   }
+// // * squence does note change but this is sequence loading
+//   fruits.forEach(async (fruit) =>{
+//     const emoji = await getFruit(fruit);
 //     log(emoji);
+//   })
+//   // * sequence changes in this one but this is parallel 
+// };
+// fruitLoop()
+
+// const fruitInspection = async () => {
+//   if ((await getFruit('peach')) === '🍑') {
+//     console.log('looks peachy!');
 //   }
-// squence does note change but this is sequence loading
-  fruits.forEach(async (fruit) =>{
-    const emoji = await getFruit(fruit);
-    log(emoji);
-  })
-  // sequence changes in this one but this is parallel 
-};
-fruitLoop()
+// };
 
-const fruitInspection = async () => {
-  if ((await getFruit('peach')) === '🍑') {
-    console.log('looks peachy!');
-  }
-};
+// const getTodo = async () => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
 
-const getTodo = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+//   const { title, userId, body } = await res.json();
 
-  const { title, userId, body } = await res.json();
-
-  console.log(title, userId, body);
-};
+//   console.log(title, userId, body);
+// };
