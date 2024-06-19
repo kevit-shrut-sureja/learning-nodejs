@@ -1,1 +1,22 @@
-[{"title":"first Note","body":"1st note"},{"title":"shrut Sureja","body":";kjasf\n"},{"title":"test","body":"asd"},{"title":"tesskjt","body":"asd"}]
+[
+  {
+    "title": "first Note",
+    "body": "1st note"
+  },
+  {
+    "title": "shrut Sureja",
+    "body": ";kjasf\n"
+  },
+  {
+    "title": "test",
+    "body": "asd"
+  },
+  {
+    "title": "tesskjt",
+    "body": "asd"
+  },
+  {
+    "title": "tesst",
+    "body": "asd"
+  }
+]
