@@ -3,6 +3,7 @@ const chalk = require('chalk')
 
 function addNote(title, body){
     const notes = readJSON();
+    // debugger
     for(const note of notes){
         if(note.title === title){
             console.log(chalk.red.inverse.bold("Note already exists"));
@@ -11,6 +12,7 @@ function addNote(title, body){
     }
     notes.push({title, body});
     const isDataWritten = writeJSON(notes);
+    // debugger
     if(!isDataWritten) {
         console.log(chalk.red.inverse.bold("Some error occured"));
         return;
