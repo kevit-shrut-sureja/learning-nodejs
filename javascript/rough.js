@@ -64,15 +64,20 @@
 // }
 
 
-"use strict"
 // console.log(this)
-function logThis(){
-    function logThisInsideLogThis() {
-        console.log(this);
-    }
-    logThisInsideLogThis()
-}
-logThis()
+// "use strict"
+// function logThis(){
+//     function logThisInsideLogThis1() {
+//         "use strict"
+//         console.log(this);// undefined 
+//     }
+//     function logThisInsideLogThis2(){
+//         console.log(this); // global Object
+//     }
+//     logThisInsideLogThis1()
+//     logThisInsideLogThis2()
+// }
+// logThis()
 
 // const logThis = () => { 
 //     function logThisInsideLogThis (){ console.log(this);}
@@ -85,3 +90,10 @@ logThis()
 // using spread operator 
 
 // map , set
+
+console.log(a)  
+
+a = 0;
+function fun(){
+    console.log("in the function");
+}

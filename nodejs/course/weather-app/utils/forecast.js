@@ -1,9 +1,8 @@
 const { request } = require('undici')
 
-async function geocode(cityName, callback){
+async function forecast(cityName, callback){
     try {
         const {
-            statusCode,
             body
         } = await request('https://api.weatherapi.com/v1/current.json', {
             query  :{
@@ -11,16 +10,15 @@ async function geocode(cityName, callback){
                 q : cityName
             }
         } )
-        const data = await body.json();
+        const data = await body.json()
         if(data.error){
             callback("Unable to find the location. Try another search.", null);
         }
         else {
             callback(null, {
-                location : data.location.name + ', ' + data.location.country,
-                lat : data.location.lat,
-                lon : data.location.lon,
-                temperature : data.current.temp_c
+                forecast : data.current.condition.text,
+                humidity : data.current.humidity,
+                cloud : data.current.cloud
             })
         }
 
@@ -29,4 +27,4 @@ async function geocode(cityName, callback){
     }
 }
 
-module.exports = geocode
+module.exports = forecast
