@@ -85,5 +85,5 @@ app.use((req, res, next) => {
 })
 
 app.listen(PORT, () => {
-    console.log("Server is listining in the post"+ PORT + " : " + new Date().toTimeString())
+    console.log("Server is listining in the post "+ PORT + " : " + new Date().toTimeString())
 }); 
