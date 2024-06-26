@@ -5,7 +5,7 @@ import { geocode } from './utils/geocode.js'
 import { forecast } from './utils/forecast.js'
 
 const app = express();
-
+const PORT = process.env.PORT || 3000
 //Define Paths for the express configs 
 const __dirname = import.meta.dirname
 
@@ -84,6 +84,6 @@ app.use((req, res, next) => {
   })
 })
 
-app.listen(3000, () => {
-    console.log("Server is listining in the post 3000. " + new Date().toTimeString())
+app.listen(PORT, () => {
+    console.log("Server is listining in the post"+ PORT + " : " + new Date().toTimeString())
 }); 

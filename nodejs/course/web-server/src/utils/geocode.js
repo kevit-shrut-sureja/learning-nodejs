@@ -7,7 +7,7 @@ async function geocode(cityName, callback){
             body
         } = await request('https://api.weatherapi.com/v1/current.json', {
             query  :{
-                key : '20154bff1e1d4a22885105735242106',
+                key : process.env.API_KEY,
                 q : cityName
             }
         } )
