@@ -16,8 +16,9 @@ async function forecast(lat, lon, callback){
             callback("Unable to find the location from lat and lon. Try another search.", undefined);
         }
         else {
+            const forecast = `Today's forecast is ${data.current.condition.text} and the temperature is ${data.current.temp_c}.`
             callback(undefined, {
-                forecast : data.current.condition.text,
+                forecast
             })
         }
 
