@@ -85,15 +85,63 @@
 // }
 // logThis ();
 
-// TODO
+// TODO 
 // [ 1, 2 ,3 , [2,4,5, [" asdasd", 2, [2,3,5]]]] // convert this too a new reference in the memory not the copy of the memory
 // using spread operator 
 
 // map , set
 
-console.log(a)  
+// console.log(a)  
 
-a = 0;
-function fun(){
-    console.log("in the function");
+// a = 0;
+// function fun(){
+//     console.log("in the function");
+// }
+
+// const a = {
+//     name : "asdasd",
+//     pname(){
+//         console.log("asdasdsadasdad");
+//     },
+//     b : {
+//         c : {
+//             z : "asdasdasd"
+//         }
+//     }
+// }
+
+// const p = JSON.stringify(a);
+// console.log(p);
+// console.log(JSON.parse(p));
+
+// const s = [1,2.3,4,4,5,6]
+// console.log(s)
+
+// console.log(x = 123)
+
+// const myPromise = () => Promise.resolve('I have resolved!');
+
+// function firstFunction() {
+//   myPromise().then(res => console.log(res));
+//   console.log('second');
+// }
+
+// async function secondFunction() {
+//   console.log(await myPromise());
+//   console.log('second');
+// }
+
+// firstFunction();
+// secondFunction();
+
+function compareMembers(person1, person2 = person) {
+    if (person1 !== person2) {
+      console.log('Not the same!');
+    } else {
+      console.log('They are the same!');
+    }
 }
+
+const person = { name: 'Lydia' };
+
+compareMembers(person);
