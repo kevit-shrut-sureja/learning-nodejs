@@ -1,5 +1,5 @@
-const date = new Date();
-console.log("date => ", date, typeof date); //2024-06-14T06:34:32.338Z bbject
+const date = new Date("2024-06-02");
+console.log("date => ", date, typeof date); //2024-06-14T06:34:32.338Z object
 console.log("date.getDate => ", date.getDate(), typeof date.getDate()); //14  number
 console.log("date.getDay => ", date.getDay() ,typeof date.getDay()) //5 number this is the day of the week from the where Sunday - Saturday : 0 - 6
 // similar one getUTCDay same sunday = 0 

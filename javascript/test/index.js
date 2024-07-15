@@ -40,6 +40,7 @@ const fruits = ["banana", "apple", "mango", "kiwi", ];
 
 console.log(fruits.reduce((count, fruit) => count + (fruit.includes('a') ? 1 : 0), 0));
 console.log(fruits.filter(fruit => fruit.includes('a')).length);
+console.log(fruits.map(fruit => fruit.includes('a') ? 1 : 0).reduce((sum, count)=> sum + count, 0));
 
 console.log("------------------");
 
