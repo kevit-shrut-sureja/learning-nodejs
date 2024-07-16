@@ -14,8 +14,8 @@ app.use((req, res, next) => {
     next()
 })
 app.use(express.json())
-app.use(userRoutes)
-app.use(taskRoutes)
+app.use('/users', userRoutes)
+app.use('/tasks', auth, taskRoutes)
 
 app.listen(port, () => {
     console.log(`SERVER : Live on the http://localhost:${port}`);

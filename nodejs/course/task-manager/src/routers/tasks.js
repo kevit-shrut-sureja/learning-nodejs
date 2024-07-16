@@ -3,7 +3,7 @@ const Task = require('../models/tasks.js')
 const auth = require('../middleware/auth.js')
 const router = Router();
 
-router.post('/tasks', auth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const task = new Task({...req.body, author : req.user._id});
         await task.save();
@@ -13,7 +13,7 @@ router.post('/tasks', auth, async (req, res) => {
     }
 });
 
-router.get('/tasks', auth, async(req, res) => {
+router.get('/', async(req, res) => {
     try {
     // const tasks = await Task.find({author : req.user._id});
     // res.status(200).json(tasks)
@@ -24,7 +24,7 @@ router.get('/tasks', auth, async(req, res) => {
     }
 })
 
-router.get('/tasks/:id', auth, async(req, res) => {
+router.get('/:id', async(req, res) => {
     try {
         const _id = req.params.id
         const task = await Task.findOne({ _id, author : req.user._id});
@@ -37,7 +37,7 @@ router.get('/tasks/:id', auth, async(req, res) => {
     }
 })
 
-router.patch('/tasks/:id', auth, async(req, res) => {
+router.patch('/:id', async(req, res) => {
     try {
         const updates = Object.keys(req.body);
         const allowedToUpdate = ['description', 'completed'];
@@ -63,7 +63,7 @@ router.patch('/tasks/:id', auth, async(req, res) => {
 })
 
 
-router.delete('/tasks/:id', auth, async(req, res)=>{
+router.delete('/:id', async(req, res)=>{
     try {
         const task = await Task.findOneAndDelete({ _id : req.params.id, author : req.user._id})
         
