@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const mongoose = require("mongoose");
 const validator = require("validator");
 const jwt = require('jsonwebtoken')
+const Task = require('./tasks.js')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -48,6 +49,13 @@ const userSchema = new mongoose.Schema({
     }]
 });
 
+// just for the mongoose this does not get stored in the database in user 
+userSchema.virtual('tasks', {
+    ref : 'task',
+    localField : '_id',
+    foreignField : 'author'
+})
+
 userSchema.methods.generateAuthToken = async function() {
     try {
         const user = this;
@@ -60,7 +68,7 @@ userSchema.methods.generateAuthToken = async function() {
     }
 }
 
-userSchema.methods.getPublicProfile = function() {
+userSchema.methods.toJSON = function() {
     try {
         const user = this;
         const userObject = user.toObject()
@@ -100,6 +108,31 @@ userSchema.pre('save', async function (next) {
 
     next();
 })
+
+userSchema.methods.deleteUserTask = async function () {
+    try {
+        const user = this;
+        console.log(user);
+        await Task.deleteMany({ author : user._id})
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+// DOES NOT WORK ERROR IS REMOVE IS NOT A FUNCTION 
+// Delete User task when user is removed
+// userSchema.pre('remove', async function(next){
+//     try {
+//         const user = this;
+//         console.log(user);
+//         const deleted = await Task.deleteMany({ author : user._id})
+//         console.log(deleted);   
+//         next()
+//     }
+//     catch (error){
+//         throw new Error(error)
+//     }
+// })
 
 const User = mongoose.model("User", userSchema);
 

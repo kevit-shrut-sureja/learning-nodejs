@@ -1,7 +1,6 @@
 const {Router} = require('express')
 const User = require('../models/user.js');
 const auth = require('../middleware/auth.js')
-
 const router = Router();
 
 router.post('/users',async (req, res) => {
@@ -21,8 +20,8 @@ router.post('/users/login', async(req, res) => {
         const user = await User.findByCredentials(req.body.email,req.body.password)
         
         const token = await user.generateAuthToken();
-        
-        res.json({ user : user.getPublicProfile(), token})
+
+        res.json({ user : user, token})
     } catch (error) {
         res.status(500).json(error)
     }
@@ -74,7 +73,7 @@ router.get('/users/:id', auth, async(req, res) => {
     }
 });
 
-router.patch('/users/:id',auth, async(req, res) => {
+router.patch('/users/me',auth, async(req, res) => {
     try {
         const updates = Object.keys(req.body);
         const allowedToUpdate = ['name', 'email', 'password', 'age'];
@@ -84,29 +83,30 @@ router.patch('/users/:id',auth, async(req, res) => {
             return res.status(400).json()
         }
 
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators : true});
+        updates.forEach((update) => req.user[update] = req.body[update])
+        await req.user.save()
 
-        if(!user){
-            return res.status(404).json();
-        }
-
-        res.json(user)
+        res.json(req.user)
     } catch (error) {
         console.log(error);
         res.status(400).json(error)
     }
 })
 
-router.delete('/users/:id',auth, async(req, res)=>{
+router.delete('/users/me', auth, async(req, res)=>{
     try {
-        const user = await User.findByIdAndDelete(req.params.id);
+        const user = await User.findByIdAndDelete(req.user._id);
 
         if(!user){
             return res.status(400).json();
         }
-
-        res.json(user)
+        // deleting all the user tasks with the method
+        await user.deleteUserTask();
+        
+        // await req.user.remove() // DOES NOT WORK
+        res.json(req.user)
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 })
