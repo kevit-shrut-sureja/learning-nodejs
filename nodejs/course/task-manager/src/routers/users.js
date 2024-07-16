@@ -3,7 +3,7 @@ const User = require('../models/user.js');
 const auth = require('../middleware/auth.js')
 const router = Router();
 
-router.post('/users',async (req, res) => {
+router.post('/',async (req, res) => {
     console.log(req.body);
     try {
         const user = new User(req.body);
@@ -15,7 +15,7 @@ router.post('/users',async (req, res) => {
     }
 });
 
-router.post('/users/login', async(req, res) => {
+router.post('/login', async(req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email,req.body.password)
         
@@ -27,7 +27,7 @@ router.post('/users/login', async(req, res) => {
     }
 })
 
-router.post('/users/logoutAll', auth, async (req, res) => {
+router.post('/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []
         await req.user.save();
@@ -37,7 +37,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     }
 })
 
-router.post('/users/logout', auth, async(req, res) => {
+router.post('/logout', auth, async(req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter(token => {
             return token.token !== req.token
@@ -50,7 +50,7 @@ router.post('/users/logout', auth, async(req, res) => {
     }
 })
 
-router.get('/users', auth, async(req, res) => {
+router.get('/', auth, async(req, res) => {
     try {
         const users = await User.find({});
         res.status(200).json(users)
@@ -59,7 +59,7 @@ router.get('/users', auth, async(req, res) => {
     }
 })
 
-router.get('/users/:id', auth, async(req, res) => {
+router.get('/:id', auth, async(req, res) => {
     try {
         const _id = req.params.id
         const user = await User.findOne({_id});
@@ -73,7 +73,7 @@ router.get('/users/:id', auth, async(req, res) => {
     }
 });
 
-router.patch('/users/me',auth, async(req, res) => {
+router.patch('/me',auth, async(req, res) => {
     try {
         const updates = Object.keys(req.body);
         const allowedToUpdate = ['name', 'email', 'password', 'age'];
@@ -93,7 +93,7 @@ router.patch('/users/me',auth, async(req, res) => {
     }
 })
 
-router.delete('/users/me', auth, async(req, res)=>{
+router.delete('/me', auth, async(req, res)=>{
     try {
         const user = await User.findByIdAndDelete(req.user._id);
 
