@@ -112,20 +112,20 @@ const q4 = [{
 // 5.
 // Similar to Exercise 4, let's count the number of players by non null country.
 const q5 = [{
-    $match : {
-        country : { $ne : null }
+    $match: {
+        country: { $ne: null }
     }
 },
 {
-    $group : {
-        _id : "$country",
-        numberOfPlayers : {
-            $sum : 1
+    $group: {
+        _id: "$country",
+        numberOfPlayers: {
+            $sum: 1
         }
     }
-}, 
+},
 {
-    $sort : {numberOfPlayers : -1}
+    $sort: { numberOfPlayers: -1 }
 }]
 
 // 6.
@@ -134,25 +134,61 @@ const q5 = [{
 // your knowledge together and count number of players of each country that bat with a given 
 // hand. Remove null values of Batting_Hand and sort the output in alphabetical order. 
 
-const q6 =[{
-    $match : {
-        country : { $ne : null },
-        batting_hand : { $ne : null }
+const q6 = [{
+    $match: {
+        country: { $ne: null },
+        batting_hand: { $ne: null }
     }
 },
 {
-    $group : {
-        _id : "$country",
-        leftHanded : { $sum : { $cond : [{ $eq : ["$batting_hand", "Left_Hand"]}, 1, 0]}},
-        rightHanded : { $sum : { $cond : [{ $eq : ["$batting_hand", "Right_Hand"]}, 1, 0]}}
+    $group: {
+        _id: "$country",
+        leftHanded: { $sum: { $cond: [{ $eq: ["$batting_hand", "Left_Hand"] }, 1, 0] } },
+        rightHanded: { $sum: { $cond: [{ $eq: ["$batting_hand", "Right_Hand"] }, 1, 0] } }
     }
 },
 {
-    $sort : {_id : 1}
+    $sort: { _id: 1 }
 }]
 
 // 7.
 // Our employees are members of different departments. Deconstruct the deparments array 
 // such that there is a separate document for each department an employee belongs to. 
+const q7 = [{
+    $unwind: "$_empDepartment"
+}]
 
-module.exports = { q1, q2, q3, q4, q5, q6}
+// 8. In order to find an object's location in an array, include the index position. 
+const q8 = [{
+    $unwind: {
+        path: "$_empDepartment",
+        includeArrayIndex: 'indexPosition',
+    }
+}]
+
+// 9. Let's crunch some numbers! Count the number of departments an employee belongs to.
+const q9 = [{
+    $addFields: {
+        numberOfDepartments : { $size: "$_empDepartment" }
+    }
+}]
+
+// 10 
+// Write a query that counts the number of employees in each department. To make things
+// more interesting, perform this action only against employees having empno greater than
+// or equal to 3.
+const q10 = [{
+    $match : {
+        _empId : { $gte : 3}
+    }
+},
+{
+    $unwind: "$_empDepartment"
+},
+{
+    $group : {
+        _id : "$_empDepartment",
+        numberOfEmployees : { $sum : 1 }
+    }
+}]
+module.exports = { q1, q2, q3, q4, q5, q6, q7, q8, q9, q10 }

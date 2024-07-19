@@ -1,0 +1,78 @@
+[{
+  "_id": {
+    "$oid": "650a854d542e3b2151d40f8b"
+  },
+  "_empId": 1,
+  "_empName": "A",
+  "_empDepartment": [
+    "dept1",
+    "dept2",
+    "dept3"
+  ],
+  "_empLocation": "L1"
+},
+{
+  "_id": {
+    "$oid": "650a856b542e3b2151d40f8d"
+  },
+  "_empId": 2,
+  "_empName": "B",
+  "_empDepartment": [
+    "dept4",
+    "dept2",
+    "dept3"
+  ],
+  "_empLocation": "L2"
+},
+{
+  "_id": {
+    "$oid": "650a8588542e3b2151d40f8f"
+  },
+  "_empId": 3,
+  "_empName": "C",
+  "_empDepartment": [
+    "dept6",
+    "dept",
+    "dept3"
+  ],
+  "_empLocation": "L4"
+},
+{
+  "_id": {
+    "$oid": "650a85a0542e3b2151d40f91"
+  },
+  "_empId": 4,
+  "_empName": "D",
+  "_empDepartment": [
+    "dept3",
+    "dept2",
+    "dept4"
+  ],
+  "_empLocation": "L3"
+},
+{
+  "_id": {
+    "$oid": "650a85c7542e3b2151d40f93"
+  },
+  "_empId": 5,
+  "_empName": "E",
+  "_empDepartment": [
+    "dept6",
+    "dept4",
+    "dept3"
+  ],
+  "_empLocation": "L5"
+},
+{
+  "_id": {
+    "$oid": "650a8608542e3b2151d40f95"
+  },
+  "_empId": 6,
+  "_empName": "F",
+  "_empDepartment": [
+    "dept1",
+    "dept2",
+    "dept5"
+  ],
+  "_empLocation": "L3"
+}]
