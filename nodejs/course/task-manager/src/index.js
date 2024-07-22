@@ -16,6 +16,11 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use('/users', userRoutes)
 app.use('/tasks', auth, taskRoutes)
+app.use('/*', (err, req, res, next) => {
+    res.status(400).json({ error : err.message })
+})
+
+app.get('/', (req,res) => res.json({ message : "all good"}))
 
 app.listen(port, () => {
     console.log(`SERVER : Live on the http://localhost:${port}`);

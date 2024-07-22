@@ -46,7 +46,12 @@ const userSchema = new mongoose.Schema({
             type : String,
             required : true
         }
-    }]
+    }],
+    avatar : {
+        type : Buffer
+    }
+}, {
+    timestamps : true 
 });
 
 // just for the mongoose this does not get stored in the database in user 
@@ -75,6 +80,7 @@ userSchema.methods.toJSON = function() {
 
         delete userObject.password;
         delete userObject.tokens;
+        delete userObject.avatar;
 
         return userObject;
     } catch (error) {
