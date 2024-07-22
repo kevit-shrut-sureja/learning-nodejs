@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-
+require("dotenv").config()
 main().catch(err => console.log(err));
 
 async function main(){
     try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/task-manager-api");
+        await mongoose.connect(process.env.DB);
         console.log("Mongoose connected");
     }
     finally{

@@ -2,17 +2,21 @@ const {Router} = require('express')
 const User = require('../models/user.js');
 const auth = require('../middleware/auth.js')
 const multer = require('multer')
-const sharp = require('sharp')
+const sharp = require('sharp');
+// const { sendWelcomeEmail } = require('../emails/account.js')
 const router = Router();
+// const RECIPIENT_EMAIL = "yihase2173@modotso.com";
 
 router.post('/',async (req, res) => {
     console.log(req.body);
     try {
         const user = new User(req.body);
         await user.save();
+        // await sendWelcomeEmail(RECIPIENT_EMAIL, user.name);//
         const token = await user.generateAuthToken();
         res.status(201).json({ user, token });
     } catch (error) {
+        console.log(error);
         res.status(400).json(error)
     }
 });

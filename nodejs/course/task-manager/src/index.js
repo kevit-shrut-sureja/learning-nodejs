@@ -5,7 +5,7 @@ const taskRoutes = require('./routers/tasks.js')
 const auth = require('./middleware/auth.js')
 
 const app = express()
-
+require('dotenv').config();
 const port = process.env.PORT || 3000;
 
 
