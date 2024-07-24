@@ -4,8 +4,6 @@ const { MailtrapClient } = require("mailtrap");
  * For this example to work, you need to set up a sending domain,
  * and obtain a token that is authorized to send from the domain.
  */
-require('dotenv').config({ path: '../config/.env.local' })
-
 const TOKEN = "9865859ea838b23410cb1373de64a0ae";
 const ENDPOINT = "https://send.api.mailtrap.io/";
 const SENDER_EMAIL = "mailtrap@demomailtrap.com";

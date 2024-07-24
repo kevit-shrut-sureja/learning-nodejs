@@ -5,7 +5,6 @@ const taskRoutes = require('./routers/tasks.js')
 const auth = require('./middleware/auth.js')
 
 const app = express()
-require('dotenv').config({ path: `../.env.${process.env.NODE_ENV}` });
 
 app.use((req, res, next) => {
     console.log(req.method, req.path);
