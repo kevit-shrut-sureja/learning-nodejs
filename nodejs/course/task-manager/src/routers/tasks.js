@@ -74,7 +74,6 @@ router.patch('/:id', async(req, res) => {
         }
         const task = await Task.findOne({ _id : req.params.id, author : req.user._id})
         // const task = await Task.findById(req.params.id);
-
         if(!task){
             return res.status(404).json();
         }
@@ -85,7 +84,7 @@ router.patch('/:id', async(req, res) => {
 
         res.json(task)
     } catch (error) {
-        res.status(500).json(error)
+        res.status(400).json(error)
     }
 })
 
@@ -94,7 +93,7 @@ router.delete('/:id', auth, async(req, res)=>{
         const task = await Task.findOneAndDelete({ _id : req.params.id, author : req.user._id})
         
         if(!task){
-            return res.status(400).json();
+            return res.status(404).json();
         }
 
         res.json(task)
