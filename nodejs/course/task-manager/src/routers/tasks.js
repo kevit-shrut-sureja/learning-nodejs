@@ -3,7 +3,7 @@ const Task = require('../models/tasks.js')
 const auth = require('../middleware/auth.js')
 const router = Router();
 
-router.post('', async (req, res) => {
+router.post('', auth, async (req, res) => {
     try {
         const task = new Task({...req.body, author : req.user._id});
         await task.save();
@@ -14,7 +14,7 @@ router.post('', async (req, res) => {
 });
 
 //  GET /tasks
-router.get('', async(req, res) => {
+router.get('', auth, async(req, res) => {
     const match = {};
     const sort = {};
     if (req.query.completed) {
@@ -89,8 +89,7 @@ router.patch('/:id', async(req, res) => {
     }
 })
 
-
-router.delete('/:id', async(req, res)=>{
+router.delete('/:id', auth, async(req, res)=>{
     try {
         const task = await Task.findOneAndDelete({ _id : req.params.id, author : req.user._id})
         

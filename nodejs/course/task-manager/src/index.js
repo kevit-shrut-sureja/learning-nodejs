@@ -3,7 +3,6 @@ const app = require('./app.js')
 const port = process.env.PORT;
 
 app.listen(port, () => {
-    console.log(process.env.NODE_ENV, `../.env.${process.env.NODE_ENV}`)
     console.log(`SERVER : Live on the http://localhost:${port}`);
 })
 

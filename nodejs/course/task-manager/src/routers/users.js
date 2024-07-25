@@ -29,6 +29,8 @@ router.post('/login', async(req, res) => {
 
         res.json({ user : user, token})
     } catch (error) {
+        if(error.message === "Wrong Password")
+            return res.status(400).json(error.message)
         res.status(500).json(error)
     }
 })
@@ -56,28 +58,9 @@ router.post('/logout', auth, async(req, res) => {
     }
 })
 
-router.get('/', auth, async(req, res) => {
-    try {
-        const users = await User.find({});
-        res.status(200).json(users)
-    } catch (error) {
-        res.status(500).json(error);
-    }
+router.get('/me', auth, async(req, res) => {
+    res.json(req.user)
 })
-
-router.get('/:id', auth, async(req, res) => {
-    try {
-        const _id = req.params.id
-        const user = await User.findOne({_id});
-        if(!user){
-            return res.status(404).json()
-        }
-        res.status(200).json(user);
-    } catch (error) {
-        console.log(error);
-        res.status(500).json(error);
-    }
-});
 
 router.patch('/me',auth, async(req, res) => {
     try {
@@ -100,6 +83,7 @@ router.patch('/me',auth, async(req, res) => {
 })
 
 router.delete('/me', auth, async(req, res)=>{
+    // remove does not work here
     try {
         const user = await User.findByIdAndDelete(req.user._id);
 
