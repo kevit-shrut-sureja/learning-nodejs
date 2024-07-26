@@ -30,23 +30,25 @@ router.get('', auth, async(req, res) => {
         const parts = req.query.sortBy.split(":");
         if(parts[1] === 'asce')
             sort[parts[0]] = 1
-        else if(parts[2] === 'desc')
-            sort[parts[2]] = -1;
-        else 
+        else if(parts[1] === 'desc')
+            sort[parts[0]] = -1;
+        else {
             return res.status(400).json({ error : 'Invalid value for sortBy. Use "asce" or "desc".'})
+        }
     }
     try {
-        await req.user.populate({
+        const data = await req.user.populate({
             path : 'tasks',
             match,
             options : {
                 limit : Number(req.query.limit),
                 skip : Number(req.query.skip),
-                sort
+                sort 
             }
         });
-        res.json(req.user.tasks)
+        res.json(data.tasks)
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 })
