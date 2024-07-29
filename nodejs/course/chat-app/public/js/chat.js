@@ -9,13 +9,62 @@ const $messages = document.querySelector('#messages')
 
 // Templates 
 const messageTemplate = document.querySelector('#message-template').innerHTML
+const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
+const sideBarTemplate = document.querySelector('#sidebar-template').innerHTML
+
+// Options
+const {username, room} = Qs.parse(location.search, { ignoreQueryPrefix : true})
+
+const autoscroll = () => {
+    // new message element
+    const $newMessage = $messages.lastElementChild
+
+    // Height of the new message
+    const newMessageStyles = getComputedStyle($newMessage)
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom)
+    const newMessageHeight = $newMessage.offsetHeight + newMessageMargin
+
+
+    // visible height 
+    const visibleHeight = $messages.offsetHeight
+
+    // height of messages container
+    const containerHeight = $messages.scrollHeight
+
+    // How far have i scrolled 
+    const scrollOffSet = $messages.scrollTop + visibleHeight
+
+    if(containerHeight - newMessageHeight <= scrollOffSet){
+        $messages.scrollTop = $messages.scrollHeight
+    }
+}
 
 socket.on('message', (msg) => {
-    console.log("[Message]: ", msg);
     const html = Mustache.render(messageTemplate, {
-        message : msg
+        username : msg.username,
+        message : msg.text,
+        createdAt : moment(msg.createdAt).format('h:mm:ss a')
     })
     $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
+})
+
+socket.on('roomData', ({ room , users}) => {
+    const html = Mustache.render(sideBarTemplate, {
+        room,
+        users
+    })
+    document.querySelector('#sidebar').innerHTML = html
+})
+
+socket.on('locationMessage', (url) => {
+    const html = Mustache.render(locationMessageTemplate, {
+        username : url.username,
+        url : url.url,
+        createdAt : moment(url.createdAt).format('h:mm:ss a')
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+    autoscroll()
 })
 
 $messageForm.addEventListener('submit', (e) => {
@@ -57,3 +106,11 @@ $sendLocationButton.addEventListener('click', () => {
             })
     })
 })
+
+
+socket.emit('join', {username , room}, (error) => {
+    if(error){
+        alert(error)
+        location.href = '/'
+    }
+});
