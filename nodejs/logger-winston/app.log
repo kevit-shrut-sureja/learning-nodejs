@@ -1,0 +1,39 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"200\",\"responseTime\":\"2.620\"}","timestamp":"2024-08-02T12:15:32.572Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/favicon.ico\",\"status\":\"404\",\"responseTime\":\"0.908\"}","timestamp":"2024-08-02T12:15:32.624Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"304\",\"responseTime\":\"2.235\"}","timestamp":"2024-08-02T12:16:54.856Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"GET","timestamp":"2024-08-02T12:17:40.685Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"304\",\"responseTime\":\"6.018\"}","timestamp":"2024-08-02T12:17:40.697Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"GET","timestamp":"2024-08-02T12:18:39.304Z"}
+{"level":"\u001b[31merror\u001b[39m","message":"GET","timestamp":"2024-08-02T12:18:39.305Z"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"GET","timestamp":"2024-08-02T12:18:39.306Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"304\",\"responseTime\":\"3.647\"}","timestamp":"2024-08-02T12:18:39.311Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"GET","timestamp":"2024-08-02T12:21:35.816Z"}
+{"level":"\u001b[34mdebug\u001b[39m","message":"GET","timestamp":"2024-08-02T12:21:35.817Z"}
+{"level":"\u001b[31merror\u001b[39m","message":"GET","timestamp":"2024-08-02T12:21:35.818Z"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"GET","timestamp":"2024-08-02T12:21:35.818Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET\",\"url\":\"/\",\"status\":\"304\",\"responseTime\":\"4.344\"}","timestamp":"2024-08-02T12:21:35.821Z"}
+{
+  message: 'GET',
+  level: '\x1B[32minfo\x1B[39m',
+  timestamp: '2024-08-02T12:29:15.044Z'
+}
+{
+  message: 'GET',
+  level: '\x1B[34mdebug\x1B[39m',
+  timestamp: '2024-08-02T12:29:15.046Z'
+}
+{
+  message: 'GET',
+  level: '\x1B[31merror\x1B[39m',
+  timestamp: '2024-08-02T12:29:15.046Z'
+}
+{
+  message: 'GET',
+  level: '\x1B[33mwarn\x1B[39m',
+  timestamp: '2024-08-02T12:29:15.047Z'
+}
+{
+  message: '{"method":"GET","url":"/","status":"304","responseTime":"5.039"}',
+  level: '\x1B[32minfo\x1B[39m',
+  timestamp: '2024-08-02T12:29:15.049Z'
+}
