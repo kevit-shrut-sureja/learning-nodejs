@@ -30,9 +30,14 @@
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.0"
   },
-  "lint-staged": {
-    "*.{js,jsz,ts,json,md}": [
-      "prettier --write"
-    ]
+  "husky" : {
+    "hooks" : {
+      "pre-commit" : "lint-staged"
+    }
+  },
+"lint-staged": {
+"*.{js,jsz,ts,json,md}": [
+  "prettier --write"
+]
   }
 }
