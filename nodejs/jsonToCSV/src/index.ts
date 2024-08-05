@@ -7,4 +7,6 @@ app.get('/', (req, res) => {
 
 app.listen(3001, () => {
 	console.log(`server listing on 3001`);
+	console.log();
+	let a = 1;
 });
